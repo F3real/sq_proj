@@ -1,0 +1,14 @@
+No information about UML profile in the report.
+
+Include all diagrams in the report.
+
+Profile is limited. Could have created profiles for something more. Simplistic.
+
+Setting tagged values for the used stereotypes - Not done.
+
+Operations inside the component and on the interfaces need to be mentioned.
+
+Use cases - Need to understand correct usage of UML. Users should be connected to cases that
+extend or include not base cases.
+
+Sequence diagrams should be defined in use cases. Click on use case and add diagram and select sequence.
