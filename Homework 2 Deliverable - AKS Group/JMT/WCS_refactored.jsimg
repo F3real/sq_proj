@@ -1,0 +1,767 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<archive xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="WCS_refactored.jsimg" timestamp="Fri Feb 16 22:21:55 CET 2018" xsi:noNamespaceSchemaLocation="Archive.xsd">
+<sim disableStatisticStop="false" logDecimalSeparator="." logDelimiter="," logPath="C:\Users\karth/JMT/" logReplaceMode="0" maxSamples="1000000" name="WCS_refactored.jsimg" polling="1.0" xsi:noNamespaceSchemaLocation="SIMmodeldefinition.xsd">
+<userClass name="ManagePipes" priority="0" referenceSource="Operator Requests" type="open"/>
+<userClass name="WaterQualityMonitor" priority="0" referenceSource="Operator Requests" type="open"/>
+<node name="Workstation CPU">
+<section className="Queue">
+<parameter classPath="java.lang.Integer" name="size">
+<value>-1</value>
+</parameter>
+<parameter array="true" classPath="java.lang.String" name="dropStrategies">
+<refClass>ManagePipes</refClass>
+<subParameter classPath="java.lang.String" name="dropStrategy">
+<value>waiting queue</value>
+</subParameter>
+<refClass>WaterQualityMonitor</refClass>
+<subParameter classPath="java.lang.String" name="dropStrategy">
+<value>waiting queue</value>
+</subParameter>
+</parameter>
+<parameter classPath="jmt.engine.NetStrategies.QueueGetStrategies.FCFSstrategy" name="FCFSstrategy"/>
+<parameter array="true" classPath="jmt.engine.NetStrategies.QueuePutStrategy" name="QueuePutStrategy">
+<refClass>ManagePipes</refClass>
+<subParameter classPath="jmt.engine.NetStrategies.QueuePutStrategies.TailStrategy" name="TailStrategy"/>
+<refClass>WaterQualityMonitor</refClass>
+<subParameter classPath="jmt.engine.NetStrategies.QueuePutStrategies.TailStrategy" name="TailStrategy"/>
+</parameter>
+</section>
+<section className="Server">
+<parameter classPath="java.lang.Integer" name="maxJobs">
+<value>1</value>
+</parameter>
+<parameter array="true" classPath="java.lang.Integer" name="numberOfVisits">
+<refClass>ManagePipes</refClass>
+<subParameter classPath="java.lang.Integer" name="numberOfVisits">
+<value>1</value>
+</subParameter>
+<refClass>WaterQualityMonitor</refClass>
+<subParameter classPath="java.lang.Integer" name="numberOfVisits">
+<value>1</value>
+</subParameter>
+</parameter>
+<parameter array="true" classPath="jmt.engine.NetStrategies.ServiceStrategy" name="ServiceStrategy">
+<refClass>ManagePipes</refClass>
+<subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.ServiceTimeStrategy" name="ServiceTimeStrategy">
+<subParameter classPath="jmt.engine.random.Exponential" name="Exponential"/>
+<subParameter classPath="jmt.engine.random.ExponentialPar" name="distrPar">
+<subParameter classPath="java.lang.Double" name="lambda">
+<value>3.7</value>
+</subParameter>
+</subParameter>
+</subParameter>
+<refClass>WaterQualityMonitor</refClass>
+<subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.ServiceTimeStrategy" name="ServiceTimeStrategy">
+<subParameter classPath="jmt.engine.random.Exponential" name="Exponential"/>
+<subParameter classPath="jmt.engine.random.ExponentialPar" name="distrPar">
+<subParameter classPath="java.lang.Double" name="lambda">
+<value>3.7</value>
+</subParameter>
+</subParameter>
+</subParameter>
+</parameter>
+</section>
+<section className="Router">
+<parameter array="true" classPath="jmt.engine.NetStrategies.RoutingStrategy" name="RoutingStrategy">
+<refClass>ManagePipes</refClass>
+<subParameter classPath="jmt.engine.NetStrategies.RoutingStrategies.RandomStrategy" name="Random"/>
+<refClass>WaterQualityMonitor</refClass>
+<subParameter classPath="jmt.engine.NetStrategies.RoutingStrategies.RandomStrategy" name="Random"/>
+</parameter>
+</section>
+</node>
+<node name="Workstation Disk">
+<section className="Queue">
+<parameter classPath="java.lang.Integer" name="size">
+<value>-1</value>
+</parameter>
+<parameter array="true" classPath="java.lang.String" name="dropStrategies">
+<refClass>ManagePipes</refClass>
+<subParameter classPath="java.lang.String" name="dropStrategy">
+<value>waiting queue</value>
+</subParameter>
+<refClass>WaterQualityMonitor</refClass>
+<subParameter classPath="java.lang.String" name="dropStrategy">
+<value>waiting queue</value>
+</subParameter>
+</parameter>
+<parameter classPath="jmt.engine.NetStrategies.QueueGetStrategies.FCFSstrategy" name="FCFSstrategy"/>
+<parameter array="true" classPath="jmt.engine.NetStrategies.QueuePutStrategy" name="QueuePutStrategy">
+<refClass>ManagePipes</refClass>
+<subParameter classPath="jmt.engine.NetStrategies.QueuePutStrategies.TailStrategy" name="TailStrategy"/>
+<refClass>WaterQualityMonitor</refClass>
+<subParameter classPath="jmt.engine.NetStrategies.QueuePutStrategies.TailStrategy" name="TailStrategy"/>
+</parameter>
+</section>
+<section className="Server">
+<parameter classPath="java.lang.Integer" name="maxJobs">
+<value>1</value>
+</parameter>
+<parameter array="true" classPath="java.lang.Integer" name="numberOfVisits">
+<refClass>ManagePipes</refClass>
+<subParameter classPath="java.lang.Integer" name="numberOfVisits">
+<value>1</value>
+</subParameter>
+<refClass>WaterQualityMonitor</refClass>
+<subParameter classPath="java.lang.Integer" name="numberOfVisits">
+<value>1</value>
+</subParameter>
+</parameter>
+<parameter array="true" classPath="jmt.engine.NetStrategies.ServiceStrategy" name="ServiceStrategy">
+<refClass>ManagePipes</refClass>
+<subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.ServiceTimeStrategy" name="ServiceTimeStrategy">
+<subParameter classPath="jmt.engine.random.Exponential" name="Exponential"/>
+<subParameter classPath="jmt.engine.random.ExponentialPar" name="distrPar">
+<subParameter classPath="java.lang.Double" name="lambda">
+<value>1.92</value>
+</subParameter>
+</subParameter>
+</subParameter>
+<refClass>WaterQualityMonitor</refClass>
+<subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.ServiceTimeStrategy" name="ServiceTimeStrategy">
+<subParameter classPath="jmt.engine.random.Exponential" name="Exponential"/>
+<subParameter classPath="jmt.engine.random.ExponentialPar" name="distrPar">
+<subParameter classPath="java.lang.Double" name="lambda">
+<value>1.92</value>
+</subParameter>
+</subParameter>
+</subParameter>
+</parameter>
+</section>
+<section className="Router">
+<parameter array="true" classPath="jmt.engine.NetStrategies.RoutingStrategy" name="RoutingStrategy">
+<refClass>ManagePipes</refClass>
+<subParameter classPath="jmt.engine.NetStrategies.RoutingStrategies.RandomStrategy" name="Random"/>
+<refClass>WaterQualityMonitor</refClass>
+<subParameter classPath="jmt.engine.NetStrategies.RoutingStrategies.RandomStrategy" name="Random"/>
+</parameter>
+</section>
+</node>
+<node name="MS_CPU">
+<section className="Queue">
+<parameter classPath="java.lang.Integer" name="size">
+<value>-1</value>
+</parameter>
+<parameter array="true" classPath="java.lang.String" name="dropStrategies">
+<refClass>ManagePipes</refClass>
+<subParameter classPath="java.lang.String" name="dropStrategy">
+<value>waiting queue</value>
+</subParameter>
+<refClass>WaterQualityMonitor</refClass>
+<subParameter classPath="java.lang.String" name="dropStrategy">
+<value>waiting queue</value>
+</subParameter>
+</parameter>
+<parameter classPath="jmt.engine.NetStrategies.QueueGetStrategies.FCFSstrategy" name="FCFSstrategy"/>
+<parameter array="true" classPath="jmt.engine.NetStrategies.QueuePutStrategy" name="QueuePutStrategy">
+<refClass>ManagePipes</refClass>
+<subParameter classPath="jmt.engine.NetStrategies.QueuePutStrategies.TailStrategy" name="TailStrategy"/>
+<refClass>WaterQualityMonitor</refClass>
+<subParameter classPath="jmt.engine.NetStrategies.QueuePutStrategies.TailStrategy" name="TailStrategy"/>
+</parameter>
+</section>
+<section className="Server">
+<parameter classPath="java.lang.Integer" name="maxJobs">
+<value>1</value>
+</parameter>
+<parameter array="true" classPath="java.lang.Integer" name="numberOfVisits">
+<refClass>ManagePipes</refClass>
+<subParameter classPath="java.lang.Integer" name="numberOfVisits">
+<value>1</value>
+</subParameter>
+<refClass>WaterQualityMonitor</refClass>
+<subParameter classPath="java.lang.Integer" name="numberOfVisits">
+<value>1</value>
+</subParameter>
+</parameter>
+<parameter array="true" classPath="jmt.engine.NetStrategies.ServiceStrategy" name="ServiceStrategy">
+<refClass>ManagePipes</refClass>
+<subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.ServiceTimeStrategy" name="ServiceTimeStrategy">
+<subParameter classPath="jmt.engine.random.Exponential" name="Exponential"/>
+<subParameter classPath="jmt.engine.random.ExponentialPar" name="distrPar">
+<subParameter classPath="java.lang.Double" name="lambda">
+<value>1.71</value>
+</subParameter>
+</subParameter>
+</subParameter>
+<refClass>WaterQualityMonitor</refClass>
+<subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.ServiceTimeStrategy" name="ServiceTimeStrategy">
+<subParameter classPath="jmt.engine.random.Exponential" name="Exponential"/>
+<subParameter classPath="jmt.engine.random.ExponentialPar" name="distrPar">
+<subParameter classPath="java.lang.Double" name="lambda">
+<value>5.2</value>
+</subParameter>
+</subParameter>
+</subParameter>
+</parameter>
+</section>
+<section className="Router">
+<parameter array="true" classPath="jmt.engine.NetStrategies.RoutingStrategy" name="RoutingStrategy">
+<refClass>ManagePipes</refClass>
+<subParameter classPath="jmt.engine.NetStrategies.RoutingStrategies.RandomStrategy" name="Random"/>
+<refClass>WaterQualityMonitor</refClass>
+<subParameter classPath="jmt.engine.NetStrategies.RoutingStrategies.RandomStrategy" name="Random"/>
+</parameter>
+</section>
+</node>
+<node name="MS_Disk">
+<section className="Queue">
+<parameter classPath="java.lang.Integer" name="size">
+<value>-1</value>
+</parameter>
+<parameter array="true" classPath="java.lang.String" name="dropStrategies">
+<refClass>ManagePipes</refClass>
+<subParameter classPath="java.lang.String" name="dropStrategy">
+<value>waiting queue</value>
+</subParameter>
+<refClass>WaterQualityMonitor</refClass>
+<subParameter classPath="java.lang.String" name="dropStrategy">
+<value>waiting queue</value>
+</subParameter>
+</parameter>
+<parameter classPath="jmt.engine.NetStrategies.QueueGetStrategies.FCFSstrategy" name="FCFSstrategy"/>
+<parameter array="true" classPath="jmt.engine.NetStrategies.QueuePutStrategy" name="QueuePutStrategy">
+<refClass>ManagePipes</refClass>
+<subParameter classPath="jmt.engine.NetStrategies.QueuePutStrategies.TailStrategy" name="TailStrategy"/>
+<refClass>WaterQualityMonitor</refClass>
+<subParameter classPath="jmt.engine.NetStrategies.QueuePutStrategies.TailStrategy" name="TailStrategy"/>
+</parameter>
+</section>
+<section className="Server">
+<parameter classPath="java.lang.Integer" name="maxJobs">
+<value>2</value>
+</parameter>
+<parameter array="true" classPath="java.lang.Integer" name="numberOfVisits">
+<refClass>ManagePipes</refClass>
+<subParameter classPath="java.lang.Integer" name="numberOfVisits">
+<value>1</value>
+</subParameter>
+<refClass>WaterQualityMonitor</refClass>
+<subParameter classPath="java.lang.Integer" name="numberOfVisits">
+<value>1</value>
+</subParameter>
+</parameter>
+<parameter array="true" classPath="jmt.engine.NetStrategies.ServiceStrategy" name="ServiceStrategy">
+<refClass>ManagePipes</refClass>
+<subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.ServiceTimeStrategy" name="ServiceTimeStrategy">
+<subParameter classPath="jmt.engine.random.Exponential" name="Exponential"/>
+<subParameter classPath="jmt.engine.random.ExponentialPar" name="distrPar">
+<subParameter classPath="java.lang.Double" name="lambda">
+<value>0.48</value>
+</subParameter>
+</subParameter>
+</subParameter>
+<refClass>WaterQualityMonitor</refClass>
+<subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.ServiceTimeStrategy" name="ServiceTimeStrategy">
+<subParameter classPath="jmt.engine.random.Exponential" name="Exponential"/>
+<subParameter classPath="jmt.engine.random.ExponentialPar" name="distrPar">
+<subParameter classPath="java.lang.Double" name="lambda">
+<value>0.75</value>
+</subParameter>
+</subParameter>
+</subParameter>
+</parameter>
+</section>
+<section className="Router">
+<parameter array="true" classPath="jmt.engine.NetStrategies.RoutingStrategy" name="RoutingStrategy">
+<refClass>ManagePipes</refClass>
+<subParameter classPath="jmt.engine.NetStrategies.RoutingStrategies.EmpiricalStrategy" name="Probabilities">
+<subParameter array="true" classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntryArray">
+<subParameter classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntry">
+<subParameter classPath="java.lang.String" name="stationName">
+<value>Flow Actuator</value>
+</subParameter>
+<subParameter classPath="java.lang.Double" name="probability">
+<value>1.0</value>
+</subParameter>
+</subParameter>
+<subParameter classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntry">
+<subParameter classPath="java.lang.String" name="stationName">
+<value>SC_CPU</value>
+</subParameter>
+<subParameter classPath="java.lang.Double" name="probability">
+<value>0.0</value>
+</subParameter>
+</subParameter>
+</subParameter>
+</subParameter>
+<refClass>WaterQualityMonitor</refClass>
+<subParameter classPath="jmt.engine.NetStrategies.RoutingStrategies.EmpiricalStrategy" name="Probabilities">
+<subParameter array="true" classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntryArray">
+<subParameter classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntry">
+<subParameter classPath="java.lang.String" name="stationName">
+<value>Flow Actuator</value>
+</subParameter>
+<subParameter classPath="java.lang.Double" name="probability">
+<value>0.0</value>
+</subParameter>
+</subParameter>
+<subParameter classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntry">
+<subParameter classPath="java.lang.String" name="stationName">
+<value>SC_CPU</value>
+</subParameter>
+<subParameter classPath="java.lang.Double" name="probability">
+<value>1.0</value>
+</subParameter>
+</subParameter>
+</subParameter>
+</subParameter>
+</parameter>
+</section>
+</node>
+<node name="Operator Requests">
+<section className="RandomSource">
+<parameter array="true" classPath="jmt.engine.NetStrategies.ServiceStrategy" name="ServiceStrategy">
+<refClass>ManagePipes</refClass>
+<subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.ServiceTimeStrategy" name="ServiceTimeStrategy">
+<subParameter classPath="jmt.engine.random.Exponential" name="Exponential"/>
+<subParameter classPath="jmt.engine.random.ExponentialPar" name="distrPar">
+<subParameter classPath="java.lang.Double" name="lambda">
+<value>0.1</value>
+</subParameter>
+</subParameter>
+</subParameter>
+<refClass>WaterQualityMonitor</refClass>
+<subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.ServiceTimeStrategy" name="ServiceTimeStrategy">
+<subParameter classPath="jmt.engine.random.Exponential" name="Exponential"/>
+<subParameter classPath="jmt.engine.random.ExponentialPar" name="distrPar">
+<subParameter classPath="java.lang.Double" name="lambda">
+<value>0.25</value>
+</subParameter>
+</subParameter>
+</subParameter>
+</parameter>
+</section>
+<section className="ServiceTunnel"/>
+<section className="Router">
+<parameter array="true" classPath="jmt.engine.NetStrategies.RoutingStrategy" name="RoutingStrategy">
+<refClass>ManagePipes</refClass>
+<subParameter classPath="jmt.engine.NetStrategies.RoutingStrategies.RandomStrategy" name="Random"/>
+<refClass>WaterQualityMonitor</refClass>
+<subParameter classPath="jmt.engine.NetStrategies.RoutingStrategies.RandomStrategy" name="Random"/>
+</parameter>
+</section>
+</node>
+<node name="Flow Actuator">
+<section className="Queue">
+<parameter classPath="java.lang.Integer" name="size">
+<value>-1</value>
+</parameter>
+<parameter array="true" classPath="java.lang.String" name="dropStrategies">
+<refClass>ManagePipes</refClass>
+<subParameter classPath="java.lang.String" name="dropStrategy">
+<value>waiting queue</value>
+</subParameter>
+<refClass>WaterQualityMonitor</refClass>
+<subParameter classPath="java.lang.String" name="dropStrategy">
+<value>waiting queue</value>
+</subParameter>
+</parameter>
+<parameter classPath="jmt.engine.NetStrategies.QueueGetStrategies.FCFSstrategy" name="FCFSstrategy"/>
+<parameter array="true" classPath="jmt.engine.NetStrategies.QueuePutStrategy" name="QueuePutStrategy">
+<refClass>ManagePipes</refClass>
+<subParameter classPath="jmt.engine.NetStrategies.QueuePutStrategies.TailStrategy" name="TailStrategy"/>
+<refClass>WaterQualityMonitor</refClass>
+<subParameter classPath="jmt.engine.NetStrategies.QueuePutStrategies.TailStrategy" name="TailStrategy"/>
+</parameter>
+</section>
+<section className="Server">
+<parameter classPath="java.lang.Integer" name="maxJobs">
+<value>1</value>
+</parameter>
+<parameter array="true" classPath="java.lang.Integer" name="numberOfVisits">
+<refClass>ManagePipes</refClass>
+<subParameter classPath="java.lang.Integer" name="numberOfVisits">
+<value>1</value>
+</subParameter>
+<refClass>WaterQualityMonitor</refClass>
+<subParameter classPath="java.lang.Integer" name="numberOfVisits">
+<value>1</value>
+</subParameter>
+</parameter>
+<parameter array="true" classPath="jmt.engine.NetStrategies.ServiceStrategy" name="ServiceStrategy">
+<refClass>ManagePipes</refClass>
+<subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.ServiceTimeStrategy" name="ServiceTimeStrategy">
+<subParameter classPath="jmt.engine.random.Exponential" name="Exponential"/>
+<subParameter classPath="jmt.engine.random.ExponentialPar" name="distrPar">
+<subParameter classPath="java.lang.Double" name="lambda">
+<value>1.42</value>
+</subParameter>
+</subParameter>
+</subParameter>
+<refClass>WaterQualityMonitor</refClass>
+<subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.ZeroServiceTimeStrategy" name="ZeroTimeServiceStrategy"/>
+</parameter>
+</section>
+<section className="Router">
+<parameter array="true" classPath="jmt.engine.NetStrategies.RoutingStrategy" name="RoutingStrategy">
+<refClass>ManagePipes</refClass>
+<subParameter classPath="jmt.engine.NetStrategies.RoutingStrategies.RandomStrategy" name="Random"/>
+<refClass>WaterQualityMonitor</refClass>
+<subParameter classPath="jmt.engine.NetStrategies.RoutingStrategies.RandomStrategy" name="Random"/>
+</parameter>
+</section>
+</node>
+<node name="Sink">
+<section className="JobSink"/>
+</node>
+<node name="SC_CPU">
+<section className="Queue">
+<parameter classPath="java.lang.Integer" name="size">
+<value>-1</value>
+</parameter>
+<parameter array="true" classPath="java.lang.String" name="dropStrategies">
+<refClass>ManagePipes</refClass>
+<subParameter classPath="java.lang.String" name="dropStrategy">
+<value>waiting queue</value>
+</subParameter>
+<refClass>WaterQualityMonitor</refClass>
+<subParameter classPath="java.lang.String" name="dropStrategy">
+<value>waiting queue</value>
+</subParameter>
+</parameter>
+<parameter classPath="jmt.engine.NetStrategies.QueueGetStrategies.FCFSstrategy" name="FCFSstrategy"/>
+<parameter array="true" classPath="jmt.engine.NetStrategies.QueuePutStrategy" name="QueuePutStrategy">
+<refClass>ManagePipes</refClass>
+<subParameter classPath="jmt.engine.NetStrategies.QueuePutStrategies.TailStrategy" name="TailStrategy"/>
+<refClass>WaterQualityMonitor</refClass>
+<subParameter classPath="jmt.engine.NetStrategies.QueuePutStrategies.TailStrategy" name="TailStrategy"/>
+</parameter>
+</section>
+<section className="Server">
+<parameter classPath="java.lang.Integer" name="maxJobs">
+<value>1</value>
+</parameter>
+<parameter array="true" classPath="java.lang.Integer" name="numberOfVisits">
+<refClass>ManagePipes</refClass>
+<subParameter classPath="java.lang.Integer" name="numberOfVisits">
+<value>1</value>
+</subParameter>
+<refClass>WaterQualityMonitor</refClass>
+<subParameter classPath="java.lang.Integer" name="numberOfVisits">
+<value>1</value>
+</subParameter>
+</parameter>
+<parameter array="true" classPath="jmt.engine.NetStrategies.ServiceStrategy" name="ServiceStrategy">
+<refClass>ManagePipes</refClass>
+<subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.ZeroServiceTimeStrategy" name="ZeroTimeServiceStrategy"/>
+<refClass>WaterQualityMonitor</refClass>
+<subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.ServiceTimeStrategy" name="ServiceTimeStrategy">
+<subParameter classPath="jmt.engine.random.Exponential" name="Exponential"/>
+<subParameter classPath="jmt.engine.random.ExponentialPar" name="distrPar">
+<subParameter classPath="java.lang.Double" name="lambda">
+<value>2.97</value>
+</subParameter>
+</subParameter>
+</subParameter>
+</parameter>
+</section>
+<section className="Router">
+<parameter array="true" classPath="jmt.engine.NetStrategies.RoutingStrategy" name="RoutingStrategy">
+<refClass>ManagePipes</refClass>
+<subParameter classPath="jmt.engine.NetStrategies.RoutingStrategies.RandomStrategy" name="Random"/>
+<refClass>WaterQualityMonitor</refClass>
+<subParameter classPath="jmt.engine.NetStrategies.RoutingStrategies.RandomStrategy" name="Random"/>
+</parameter>
+</section>
+</node>
+<node name="SC_Disk">
+<section className="Queue">
+<parameter classPath="java.lang.Integer" name="size">
+<value>-1</value>
+</parameter>
+<parameter array="true" classPath="java.lang.String" name="dropStrategies">
+<refClass>ManagePipes</refClass>
+<subParameter classPath="java.lang.String" name="dropStrategy">
+<value>waiting queue</value>
+</subParameter>
+<refClass>WaterQualityMonitor</refClass>
+<subParameter classPath="java.lang.String" name="dropStrategy">
+<value>waiting queue</value>
+</subParameter>
+</parameter>
+<parameter classPath="jmt.engine.NetStrategies.QueueGetStrategies.FCFSstrategy" name="FCFSstrategy"/>
+<parameter array="true" classPath="jmt.engine.NetStrategies.QueuePutStrategy" name="QueuePutStrategy">
+<refClass>ManagePipes</refClass>
+<subParameter classPath="jmt.engine.NetStrategies.QueuePutStrategies.TailStrategy" name="TailStrategy"/>
+<refClass>WaterQualityMonitor</refClass>
+<subParameter classPath="jmt.engine.NetStrategies.QueuePutStrategies.TailStrategy" name="TailStrategy"/>
+</parameter>
+</section>
+<section className="Server">
+<parameter classPath="java.lang.Integer" name="maxJobs">
+<value>1</value>
+</parameter>
+<parameter array="true" classPath="java.lang.Integer" name="numberOfVisits">
+<refClass>ManagePipes</refClass>
+<subParameter classPath="java.lang.Integer" name="numberOfVisits">
+<value>1</value>
+</subParameter>
+<refClass>WaterQualityMonitor</refClass>
+<subParameter classPath="java.lang.Integer" name="numberOfVisits">
+<value>1</value>
+</subParameter>
+</parameter>
+<parameter array="true" classPath="jmt.engine.NetStrategies.ServiceStrategy" name="ServiceStrategy">
+<refClass>ManagePipes</refClass>
+<subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.ZeroServiceTimeStrategy" name="ZeroTimeServiceStrategy"/>
+<refClass>WaterQualityMonitor</refClass>
+<subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.ServiceTimeStrategy" name="ServiceTimeStrategy">
+<subParameter classPath="jmt.engine.random.Exponential" name="Exponential"/>
+<subParameter classPath="jmt.engine.random.ExponentialPar" name="distrPar">
+<subParameter classPath="java.lang.Double" name="lambda">
+<value>1.04</value>
+</subParameter>
+</subParameter>
+</subParameter>
+</parameter>
+</section>
+<section className="Router">
+<parameter array="true" classPath="jmt.engine.NetStrategies.RoutingStrategy" name="RoutingStrategy">
+<refClass>ManagePipes</refClass>
+<subParameter classPath="jmt.engine.NetStrategies.RoutingStrategies.RandomStrategy" name="Random"/>
+<refClass>WaterQualityMonitor</refClass>
+<subParameter classPath="jmt.engine.NetStrategies.RoutingStrategies.RandomStrategy" name="Random"/>
+</parameter>
+</section>
+</node>
+<node name="SN_CPU">
+<section className="Queue">
+<parameter classPath="java.lang.Integer" name="size">
+<value>-1</value>
+</parameter>
+<parameter array="true" classPath="java.lang.String" name="dropStrategies">
+<refClass>ManagePipes</refClass>
+<subParameter classPath="java.lang.String" name="dropStrategy">
+<value>waiting queue</value>
+</subParameter>
+<refClass>WaterQualityMonitor</refClass>
+<subParameter classPath="java.lang.String" name="dropStrategy">
+<value>waiting queue</value>
+</subParameter>
+</parameter>
+<parameter classPath="jmt.engine.NetStrategies.QueueGetStrategies.FCFSstrategy" name="FCFSstrategy"/>
+<parameter array="true" classPath="jmt.engine.NetStrategies.QueuePutStrategy" name="QueuePutStrategy">
+<refClass>ManagePipes</refClass>
+<subParameter classPath="jmt.engine.NetStrategies.QueuePutStrategies.TailStrategy" name="TailStrategy"/>
+<refClass>WaterQualityMonitor</refClass>
+<subParameter classPath="jmt.engine.NetStrategies.QueuePutStrategies.TailStrategy" name="TailStrategy"/>
+</parameter>
+</section>
+<section className="Server">
+<parameter classPath="java.lang.Integer" name="maxJobs">
+<value>1</value>
+</parameter>
+<parameter array="true" classPath="java.lang.Integer" name="numberOfVisits">
+<refClass>ManagePipes</refClass>
+<subParameter classPath="java.lang.Integer" name="numberOfVisits">
+<value>1</value>
+</subParameter>
+<refClass>WaterQualityMonitor</refClass>
+<subParameter classPath="java.lang.Integer" name="numberOfVisits">
+<value>1</value>
+</subParameter>
+</parameter>
+<parameter array="true" classPath="jmt.engine.NetStrategies.ServiceStrategy" name="ServiceStrategy">
+<refClass>ManagePipes</refClass>
+<subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.ZeroServiceTimeStrategy" name="ZeroTimeServiceStrategy"/>
+<refClass>WaterQualityMonitor</refClass>
+<subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.ServiceTimeStrategy" name="ServiceTimeStrategy">
+<subParameter classPath="jmt.engine.random.Exponential" name="Exponential"/>
+<subParameter classPath="jmt.engine.random.ExponentialPar" name="distrPar">
+<subParameter classPath="java.lang.Double" name="lambda">
+<value>0.92</value>
+</subParameter>
+</subParameter>
+</subParameter>
+</parameter>
+</section>
+<section className="Router">
+<parameter array="true" classPath="jmt.engine.NetStrategies.RoutingStrategy" name="RoutingStrategy">
+<refClass>ManagePipes</refClass>
+<subParameter classPath="jmt.engine.NetStrategies.RoutingStrategies.RandomStrategy" name="Random"/>
+<refClass>WaterQualityMonitor</refClass>
+<subParameter classPath="jmt.engine.NetStrategies.RoutingStrategies.RandomStrategy" name="Random"/>
+</parameter>
+</section>
+</node>
+<measure alpha="0.01" name="MS_CPU_Utilization" nodeType="station" precision="0.03" referenceNode="MS_CPU" referenceUserClass="" type="Utilization" verbose="false"/>
+<measure alpha="0.01" name="MS_Disk_Utilization" nodeType="station" precision="0.03" referenceNode="MS_Disk" referenceUserClass="" type="Utilization" verbose="false"/>
+<measure alpha="0.01" name="SC_CPU_Utilization" nodeType="station" precision="0.03" referenceNode="SC_CPU" referenceUserClass="" type="Utilization" verbose="false"/>
+<measure alpha="0.01" name="MS_CPU_Throughput" nodeType="station" precision="0.03" referenceNode="MS_CPU" referenceUserClass="" type="Throughput" verbose="false"/>
+<measure alpha="0.01" name="System Response Time" nodeType="" precision="0.03" referenceNode="" referenceUserClass="" type="System Response Time" verbose="false"/>
+<measure alpha="0.01" name="System Throughput" nodeType="" precision="0.03" referenceNode="" referenceUserClass="" type="System Throughput" verbose="false"/>
+<measure alpha="0.01" name="Workstation CPU_Response Time" nodeType="station" precision="0.03" referenceNode="Workstation CPU" referenceUserClass="" type="Response Time" verbose="false"/>
+<measure alpha="0.01" name="MS_CPU_Response Time" nodeType="station" precision="0.03" referenceNode="MS_CPU" referenceUserClass="" type="Response Time" verbose="false"/>
+<measure alpha="0.01" name="Flow Actuator_Response Time" nodeType="station" precision="0.03" referenceNode="Flow Actuator" referenceUserClass="" type="Response Time" verbose="false"/>
+<measure alpha="0.01" name="MS_CPU_ManagePipes_Response Time" nodeType="station" precision="0.03" referenceNode="MS_CPU" referenceUserClass="ManagePipes" type="Response Time" verbose="false"/>
+<measure alpha="0.01" name="MS_CPU_WaterQualityMonitor_Response Time" nodeType="station" precision="0.03" referenceNode="MS_CPU" referenceUserClass="WaterQualityMonitor" type="Response Time" verbose="false"/>
+<measure alpha="0.01" name="SC_Disk_Utilization" nodeType="station" precision="0.03" referenceNode="SC_Disk" referenceUserClass="" type="Utilization" verbose="false"/>
+<measure alpha="0.01" name="SN_CPU_Utilization" nodeType="station" precision="0.03" referenceNode="SN_CPU" referenceUserClass="" type="Utilization" verbose="false"/>
+<measure alpha="0.01" name="ManagePipes_System Response Time" nodeType="" precision="0.03" referenceNode="" referenceUserClass="ManagePipes" type="System Response Time" verbose="false"/>
+<measure alpha="0.01" name="WaterQualityMonitor_System Response Time" nodeType="" precision="0.03" referenceNode="" referenceUserClass="WaterQualityMonitor" type="System Response Time" verbose="false"/>
+<connection source="Workstation CPU" target="Workstation Disk"/>
+<connection source="Workstation Disk" target="MS_CPU"/>
+<connection source="Workstation Disk" target="Sink"/>
+<connection source="MS_CPU" target="Workstation CPU"/>
+<connection source="MS_CPU" target="MS_Disk"/>
+<connection source="MS_Disk" target="Flow Actuator"/>
+<connection source="MS_Disk" target="SC_CPU"/>
+<connection source="Operator Requests" target="Workstation CPU"/>
+<connection source="Flow Actuator" target="MS_CPU"/>
+<connection source="SC_CPU" target="SC_Disk"/>
+<connection source="SC_Disk" target="MS_CPU"/>
+<connection source="SC_Disk" target="SN_CPU"/>
+<connection source="SN_CPU" target="SC_CPU"/>
+</sim>
+<jmodel xsi:noNamespaceSchemaLocation="JModelGUI.xsd">
+<userClass color="#FF0000FF" name="ManagePipes"/>
+<userClass color="#FFFF0000" name="WaterQualityMonitor"/>
+<station name="Workstation CPU">
+<position rotate="false" x="213.0" y="167.0"/>
+</station>
+<station name="Workstation Disk">
+<position rotate="false" x="340.0" y="167.0"/>
+</station>
+<station name="MS_CPU">
+<position rotate="false" x="497.0" y="167.0"/>
+</station>
+<station name="MS_Disk">
+<position rotate="false" x="634.0" y="167.0"/>
+</station>
+<station name="Operator Requests">
+<position rotate="false" x="78.0" y="170.0"/>
+</station>
+<station name="Flow Actuator">
+<position rotate="false" x="770.0" y="273.0"/>
+</station>
+<station name="Sink">
+<position rotate="false" x="485.0" y="67.0"/>
+</station>
+<station name="SC_CPU">
+<position rotate="false" x="777.0" y="167.0"/>
+</station>
+<station name="SC_Disk">
+<position rotate="false" x="907.0" y="184.0"/>
+</station>
+<station name="SN_CPU">
+<position rotate="false" x="1041.0" y="118.0"/>
+</station>
+</jmodel>
+<results elapsedTime="7577" logDecimalSeparator="." logDelimiter="," pollingInterval="1.0" xsi:noNamespaceSchemaLocation="Results.xsd">
+<measure alpha="0.99" analyzedSamples="266240" discardedSamples="2015" finalValue="0.21218894731215135" name="MS_CPU_Utilization" nodeType="station" precision="0.03" referenceClass="" referenceStation="MS_CPU" state="1" type="4">
+<sample lastIntervalAvgValue="0.21381024305820714" meanValue="0.21381024305820714" simulationTime="6449.853775264663"/>
+<sample lastIntervalAvgValue="0.20327784659515302" lowerBound="0.1866677416895574" meanValue="0.202523021894224" simulationTime="31961.01211032027" upperBound="0.2183783020988906"/>
+<sample lastIntervalAvgValue="0.21319651639274018" lowerBound="0.19942291088056688" meanValue="0.21055534542719767" simulationTime="94402.3187509859" upperBound="0.22168777997382846"/>
+<sample lastIntervalAvgValue="0.2144597490165996" lowerBound="0.20424811306463064" meanValue="0.2114423260909158" simulationTime="178796.00072598644" upperBound="0.21863653911720093"/>
+<sample lastIntervalAvgValue="0.20846832746455596" lowerBound="0.20770811234001785" meanValue="0.21218894731215135" simulationTime="215539.40152829804" upperBound="0.21666978228428485"/>
+</measure>
+<measure alpha="0.99" analyzedSamples="163840" discardedSamples="2395" finalValue="0.2710704679353755" name="MS_Disk_Utilization" nodeType="station" precision="0.03" referenceClass="" referenceStation="MS_Disk" state="1" type="4">
+<sample lastIntervalAvgValue="0.26876556480663627" meanValue="0.26876556480663627" simulationTime="6447.799082866919"/>
+<sample lastIntervalAvgValue="0.2653648392043143" lowerBound="0.22948773642995982" meanValue="0.2598202652401622" simulationTime="31960.61549500477" upperBound="0.29015279405036465"/>
+<sample lastIntervalAvgValue="0.26238229455591333" lowerBound="0.25266802613214456" meanValue="0.2666322509897405" simulationTime="94402.25909769216" upperBound="0.2805964758473365"/>
+<sample lastIntervalAvgValue="0.27803646631769846" lowerBound="0.2583122377062524" meanValue="0.26774226195206907" simulationTime="178794.86033641137" upperBound="0.27717228619788575"/>
+<sample lastIntervalAvgValue="0.27148633831015745" lowerBound="0.2651481081700069" meanValue="0.2710704679353755" simulationTime="253486.49600292087" upperBound="0.27699282770074407"/>
+</measure>
+<measure alpha="0.99" analyzedSamples="245760" discardedSamples="150" finalValue="0.16825276660466415" name="SC_CPU_Utilization" nodeType="station" precision="0.03" referenceClass="" referenceStation="SC_CPU" state="1" type="4">
+<sample lastIntervalAvgValue="0.17435787154845467" lowerBound="0.13064569060777625" meanValue="0.19449288862880715" simulationTime="6449.495641689027" upperBound="0.25834008664983804"/>
+<sample lastIntervalAvgValue="0.16616166233436463" lowerBound="0.1354967345346085" meanValue="0.16154450817208738" simulationTime="31959.476227444535" upperBound="0.18759228180956625"/>
+<sample lastIntervalAvgValue="0.16385168102450384" lowerBound="0.15787700533179116" meanValue="0.16830012560385318" simulationTime="94402.3344392733" upperBound="0.1787232458759152"/>
+<sample lastIntervalAvgValue="0.1695288212397925" lowerBound="0.15905794628594594" meanValue="0.16584331157953366" simulationTime="178801.79356600277" upperBound="0.1726286768731214"/>
+<sample lastIntervalAvgValue="0.17074493653924253" lowerBound="0.15905794628594594" meanValue="0.16584331157953366" simulationTime="264302.6658657953" upperBound="0.1726286768731214"/>
+<sample lastIntervalAvgValue="0.16868259232921698" lowerBound="0.16401019709192222" meanValue="0.16825276660466415" simulationTime="269598.35582393425" upperBound="0.17249533611740608"/>
+</measure>
+<measure alpha="0.99" analyzedSamples="81920" discardedSamples="10" finalValue="0.690795583230695" name="MS_CPU_Throughput" nodeType="station" precision="0.03" referenceClass="" referenceStation="MS_CPU" state="1" type="5">
+<sample lastIntervalAvgValue="0.714087409869935" lowerBound="0.6352144540531492" meanValue="0.7952312535208774" simulationTime="6448.79035304482" upperBound="1.0630153193663578"/>
+<sample lastIntervalAvgValue="0.6911696792323397" lowerBound="0.6518872297537245" meanValue="0.696195767763493" simulationTime="31960.61549500477" upperBound="0.7469668317546383"/>
+<sample lastIntervalAvgValue="0.6913381836317756" lowerBound="0.670425931534679" meanValue="0.6993904159094864" simulationTime="94401.83604675774" upperBound="0.7309706189960353"/>
+<sample lastIntervalAvgValue="0.6966436629035129" lowerBound="0.6723603963898849" meanValue="0.690795583230695" simulationTime="118124.15045226307" upperBound="0.71027020427252"/>
+</measure>
+<measure alpha="0.99" analyzedSamples="174080" discardedSamples="2640" finalValue="9.415559348861786" name="System Response Time" nodeType="" precision="0.03" referenceClass="" referenceStation="" state="1" type="8">
+<sample lastIntervalAvgValue="9.188123956224498" meanValue="9.188123956224498" simulationTime="6449.768571326692"/>
+<sample lastIntervalAvgValue="9.099608294756237" meanValue="9.117298957860012" simulationTime="31960.07211731661"/>
+<sample lastIntervalAvgValue="8.963766733373003" lowerBound="8.500240148922071" meanValue="9.165488357081447" simulationTime="94402.57302048826" upperBound="9.830736565240823"/>
+<sample lastIntervalAvgValue="9.32801581637035" lowerBound="8.770631369593055" meanValue="9.068941236556766" simulationTime="178797.0726965041" upperBound="9.367251103520477"/>
+<sample lastIntervalAvgValue="9.33626496927611" lowerBound="8.943903911785773" meanValue="9.241759543958112" simulationTime="264303.34842543665" upperBound="9.539615176130452"/>
+<sample lastIntervalAvgValue="9.512435522546703" lowerBound="8.943903911785773" meanValue="9.241759543958112" simulationTime="347927.62184360664" upperBound="9.539615176130452"/>
+<sample lastIntervalAvgValue="9.690634903425162" lowerBound="8.943903911785773" meanValue="9.241759543958112" simulationTime="434747.78941108636" upperBound="9.539615176130452"/>
+<sample lastIntervalAvgValue="9.384059909126558" lowerBound="9.243873347057397" meanValue="9.415559348861786" simulationTime="504178.9519995379" upperBound="9.587245350666175"/>
+</measure>
+<measure alpha="0.99" analyzedSamples="35840" discardedSamples="0" finalValue="0.350513806533911" name="System Throughput" nodeType="" precision="0.03" referenceClass="" referenceStation="" state="1" type="9">
+<sample lastIntervalAvgValue="0.3519506126299769" lowerBound="0.3046971977770461" meanValue="0.3518571812220529" simulationTime="6449.768571326692" upperBound="0.4162889523137635"/>
+<sample lastIntervalAvgValue="0.35624821098722614" lowerBound="0.3393049821248546" meanValue="0.35367822353012107" simulationTime="31960.07211731661" upperBound="0.36932305550414235"/>
+<sample lastIntervalAvgValue="0.34884893597997413" lowerBound="0.3403491396859992" meanValue="0.3510558090856097" simulationTime="94402.57302048826" upperBound="0.36245797606193086"/>
+<sample lastIntervalAvgValue="0.34893065257909744" lowerBound="0.3437210354512213" meanValue="0.350513806533911" simulationTime="102137.63435731987" upperBound="0.3575804741332275"/>
+</measure>
+<measure alpha="0.99" analyzedSamples="61440" discardedSamples="425" finalValue="0.333844252600114" name="Workstation CPU_Response Time" nodeType="station" precision="0.03" referenceClass="" referenceStation="Workstation CPU" state="1" type="2">
+<sample lastIntervalAvgValue="0.33926073436023413" lowerBound="0.2826830312873582" meanValue="0.33166400290280024" simulationTime="6449.700956282915" upperBound="0.38064497451824225"/>
+<sample lastIntervalAvgValue="0.3372149838795463" lowerBound="0.321966835399863" meanValue="0.3360474303802584" simulationTime="31960.405914248557" upperBound="0.35012802536065385"/>
+<sample lastIntervalAvgValue="0.3326026078174546" lowerBound="0.3273284915887501" meanValue="0.333844252600114" simulationTime="88437.30685479681" upperBound="0.34036001361147794"/>
+</measure>
+<measure alpha="0.99" analyzedSamples="184320" discardedSamples="1150" finalValue="0.41510407632887053" name="MS_CPU_Response Time" nodeType="station" precision="0.03" referenceClass="" referenceStation="MS_CPU" state="1" type="2">
+<sample lastIntervalAvgValue="0.398574045440465" meanValue="0.398574045440465" simulationTime="6448.79035304482"/>
+<sample lastIntervalAvgValue="0.38790311470074207" lowerBound="0.33718017569997455" meanValue="0.3798134474767098" simulationTime="31960.61549500477" upperBound="0.42244671925344507"/>
+<sample lastIntervalAvgValue="0.4215558079453001" lowerBound="0.3907493222981084" meanValue="0.4096128342836462" simulationTime="94401.83604675774" upperBound="0.428476346269184"/>
+<sample lastIntervalAvgValue="0.4151852188749694" lowerBound="0.40229291636273634" meanValue="0.41746303750242597" simulationTime="178796.00072598644" upperBound="0.4326331586421156"/>
+<sample lastIntervalAvgValue="0.414942042209337" lowerBound="0.40229291636273634" meanValue="0.41746303750242597" simulationTime="264303.0372060686" upperBound="0.4326331586421156"/>
+<sample lastIntervalAvgValue="0.39995949954469606" lowerBound="0.4067189050406409" meanValue="0.41510407632887053" simulationTime="266530.5192131427" upperBound="0.42348924761710016"/>
+</measure>
+<measure alpha="0.99" analyzedSamples="46080" discardedSamples="270" finalValue="0.756840461194955" name="Flow Actuator_Response Time" nodeType="station" precision="0.03" referenceClass="" referenceStation="Flow Actuator" state="1" type="2">
+<sample lastIntervalAvgValue="0.7508105388840324" meanValue="0.7508105388840324" simulationTime="6437.577777625696"/>
+<sample lastIntervalAvgValue="0.7625210560196263" meanValue="0.7589097266293552" simulationTime="31948.10939036652"/>
+<sample lastIntervalAvgValue="0.7468020664079982" lowerBound="0.6512672576248999" meanValue="0.7611343537169456" simulationTime="94402.3187509859" upperBound="0.8710014498089913"/>
+<sample lastIntervalAvgValue="0.7614652439364197" lowerBound="0.7114849974702534" meanValue="0.7493313818461036" simulationTime="178795.48941643798" upperBound="0.7871777662219538"/>
+<sample lastIntervalAvgValue="0.777235019195597" lowerBound="0.7347319656335304" meanValue="0.7622438324216274" simulationTime="264302.4659850757" upperBound="0.7897556992097244"/>
+<sample lastIntervalAvgValue="0.7440749621195785" lowerBound="0.7347319656335304" meanValue="0.7622438324216274" simulationTime="347927.19046951144" upperBound="0.7897556992097244"/>
+<sample lastIntervalAvgValue="0.7496366868678453" lowerBound="0.7347319656335304" meanValue="0.7622438324216274" simulationTime="434660.4870069076" upperBound="0.7897556992097244"/>
+<sample lastIntervalAvgValue="0.7502354928934545" lowerBound="0.7388286226872451" meanValue="0.756840461194955" simulationTime="464527.21412583883" upperBound="0.7748522997026648"/>
+</measure>
+<measure alpha="0.99" analyzedSamples="40960" discardedSamples="25" finalValue="0.6966894354707037" name="MS_CPU_ManagePipes_Response Time" nodeType="station" precision="0.03" referenceClass="ManagePipes" referenceStation="MS_CPU" state="1" type="2">
+<sample lastIntervalAvgValue="0.6651495491699655" meanValue="0.6651495491699655" simulationTime="6448.79035304482"/>
+<sample lastIntervalAvgValue="0.6606378910684843" lowerBound="0.5484776848830287" meanValue="0.6524716888853384" simulationTime="31948.290296766874" upperBound="0.756465692887648"/>
+<sample lastIntervalAvgValue="0.7065265933414054" lowerBound="0.6332186543759868" meanValue="0.684002648196564" simulationTime="94400.99068457613" upperBound="0.7347866420171412"/>
+<sample lastIntervalAvgValue="0.7011047857869018" lowerBound="0.6716392205599434" meanValue="0.6973872542239574" simulationTime="178796.00072598644" upperBound="0.7231352878879714"/>
+<sample lastIntervalAvgValue="0.6820015832502027" lowerBound="0.6816962098176327" meanValue="0.6966894354707037" simulationTime="205017.6407438089" upperBound="0.7116826611237748"/>
+</measure>
+<measure alpha="0.99" analyzedSamples="112640" discardedSamples="810" finalValue="0.3001016773047968" name="MS_CPU_WaterQualityMonitor_Response Time" nodeType="station" precision="0.03" referenceClass="WaterQualityMonitor" referenceStation="MS_CPU" state="1" type="2">
+<sample lastIntervalAvgValue="0.29281706670883423" meanValue="0.29281706670883423" simulationTime="6446.6871152948515"/>
+<sample lastIntervalAvgValue="0.28300677118686685" lowerBound="0.2649964361452452" meanValue="0.28226455114575116" simulationTime="31960.61549500477" upperBound="0.2995326661462571"/>
+<sample lastIntervalAvgValue="0.3029963698223281" lowerBound="0.28026916677277713" meanValue="0.29680492125750274" simulationTime="94401.83604675774" upperBound="0.31334067574222835"/>
+<sample lastIntervalAvgValue="0.30118285777363124" lowerBound="0.2877629747852278" meanValue="0.29990843863909117" simulationTime="178794.38246263476" upperBound="0.31205390249295456"/>
+<sample lastIntervalAvgValue="0.29925140277233997" lowerBound="0.29386640596530816" meanValue="0.3001016773047968" simulationTime="228176.25585316334" upperBound="0.30633694864428546"/>
+</measure>
+<measure alpha="0.99" analyzedSamples="143360" discardedSamples="410" finalValue="0.47356960088583316" name="SC_Disk_Utilization" nodeType="station" precision="0.03" referenceClass="" referenceStation="SC_Disk" state="1" type="4">
+<sample lastIntervalAvgValue="0.48078100650510275" lowerBound="0.24929170905079162" meanValue="0.4536758071777485" simulationTime="6449.853775264663" upperBound="0.6580599053047054"/>
+<sample lastIntervalAvgValue="0.4786819304576002" lowerBound="0.4409562832615585" meanValue="0.4781299986518832" simulationTime="31961.01211032027" upperBound="0.515303714042208"/>
+<sample lastIntervalAvgValue="0.46135693928934773" lowerBound="0.4429052916361011" meanValue="0.482170615092183" simulationTime="94403.05498494701" upperBound="0.521435938548265"/>
+<sample lastIntervalAvgValue="0.48455076926497215" lowerBound="0.4366257708670085" meanValue="0.4595664533680586" simulationTime="178801.79356600277" upperBound="0.48250713586910876"/>
+<sample lastIntervalAvgValue="0.4681855721061068" lowerBound="0.4620090987778502" meanValue="0.47356960088583316" simulationTime="190376.38354857234" upperBound="0.48513010299381615"/>
+</measure>
+<measure alpha="0.99" analyzedSamples="204800" discardedSamples="365" finalValue="0.2741607709188564" name="WSN_CPU_Utilization" nodeType="station" precision="0.03" referenceClass="" referenceStation="WSN_CPU" state="1" type="4">
+<sample lastIntervalAvgValue="0.2725181456304573" lowerBound="0.17549045731270504" meanValue="0.30582240127424587" simulationTime="6449.488633814378" upperBound="0.43615434523578667"/>
+<sample lastIntervalAvgValue="0.270051485075439" lowerBound="0.23662688184572497" meanValue="0.2706902968672623" simulationTime="31956.020941812818" upperBound="0.3047537118887996"/>
+<sample lastIntervalAvgValue="0.26206480098527996" lowerBound="0.2536051300330061" meanValue="0.271349129527681" simulationTime="94402.49000935214" upperBound="0.28909312902235584"/>
+<sample lastIntervalAvgValue="0.2694486195841877" lowerBound="0.25373649623709144" meanValue="0.2645121731240447" simulationTime="178801.1592168282" upperBound="0.2752878500109979"/>
+<sample lastIntervalAvgValue="0.2799186568937548" lowerBound="0.2594674563033299" meanValue="0.269698831496323" simulationTime="264301.2890825076" upperBound="0.2799302066893161"/>
+<sample lastIntervalAvgValue="0.27736236059323593" lowerBound="0.2594674563033299" meanValue="0.269698831496323" simulationTime="347925.3947831507" upperBound="0.2799302066893161"/>
+<sample lastIntervalAvgValue="0.2767890999252029" lowerBound="0.2594674563033299" meanValue="0.269698831496323" simulationTime="434748.67070665077" upperBound="0.2799302066893161"/>
+<sample lastIntervalAvgValue="0.26885543704217624" lowerBound="0.2671725740130434" meanValue="0.2741607709188564" simulationTime="472152.0062698334" upperBound="0.28114896782466936"/>
+</measure>
+<measure alpha="0.99" analyzedSamples="35840" discardedSamples="1055" finalValue="6.597802115868848" name="ManagePipes_System Response Time" nodeType="" precision="0.03" referenceClass="ManagePipes" referenceStation="" state="1" type="8">
+<sample lastIntervalAvgValue="6.474235018583646" meanValue="6.474235018583646" simulationTime="6449.768571326692"/>
+<sample lastIntervalAvgValue="6.225185867932702" meanValue="6.275754616494601" simulationTime="31950.034938690205"/>
+<sample lastIntervalAvgValue="6.507037415210704" lowerBound="5.724992115858557" meanValue="6.43726696402588" simulationTime="94402.57302048826" upperBound="7.149541812193203"/>
+<sample lastIntervalAvgValue="6.666387023924007" lowerBound="5.977619520794283" meanValue="6.427208280295614" simulationTime="178797.0726965041" upperBound="6.876797039796944"/>
+<sample lastIntervalAvgValue="6.680444135299664" lowerBound="6.192295469047467" meanValue="6.577893217169512" simulationTime="264294.8343329282" upperBound="6.963490965291557"/>
+<sample lastIntervalAvgValue="6.585599654143899" lowerBound="6.192295469047467" meanValue="6.577893217169512" simulationTime="347923.61997496797" upperBound="6.963490965291557"/>
+<sample lastIntervalAvgValue="6.361371743196151" lowerBound="6.410015801053019" meanValue="6.597802115868848" simulationTime="366634.0911188346" upperBound="6.785588430684676"/>
+</measure>
+<measure alpha="0.99" analyzedSamples="61440" discardedSamples="70" finalValue="10.232573818605598" name="WaterQualityMonitor_System Response Time" nodeType="" precision="0.03" referenceClass="WaterQualityMonitor" referenceStation="" state="1" type="8">
+<sample lastIntervalAvgValue="10.284085289730656" meanValue="10.284085289730656" simulationTime="6440.658911084119"/>
+<sample lastIntervalAvgValue="10.228672613522317" lowerBound="9.07249941865052" meanValue="10.45481032707719" simulationTime="31960.07211731661" upperBound="11.837121235503862"/>
+<sample lastIntervalAvgValue="9.98949558775761" lowerBound="9.695146504494472" meanValue="10.425461784976768" simulationTime="94395.79623240062" upperBound="11.155777065459064"/>
+<sample lastIntervalAvgValue="10.397378626682125" lowerBound="9.53260449430925" meanValue="9.996198147879662" simulationTime="178796.95067934465" upperBound="10.459791801450073"/>
+<sample lastIntervalAvgValue="10.3195012118705" lowerBound="9.952737723664496" meanValue="10.232573818605598" simulationTime="245331.54158773468" upperBound="10.5124099135467"/>
+</measure>
+</results>
+</archive>

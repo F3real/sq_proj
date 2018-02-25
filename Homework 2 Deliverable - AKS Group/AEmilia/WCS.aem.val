@@ -1,0 +1,13 @@
+Stationary value of the performance measures for WCS_System:
+
+- Value of measure "Mainserver_Throughput":
+	2.4235
+
+- Value of measure "Mainserver_Utilization":
+	0.0100005
+
+- Value of measure "FlowActuator_throughput":
+	1.1969
+
+- Value of measure "DB_Throughput":
+	2.44366

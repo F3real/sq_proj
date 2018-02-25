@@ -1,0 +1,245 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%							%
+%  Water Distribution, Leakage and Quality Control System AEmilia 
+%							%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+ARCHI_TYPE WCS_System(
+		const rate workstation_rate := 10,
+		const rate network_rate := 1000,
+		const rate main_server_rate := 1000,
+		const rate flow_actuator_rate := 150,
+		const rate database_rate := 1000,
+		const rate sensor_control_rate := 100,
+		const rate sensor_rate := 500,
+		const weight stop_prob := 0.2,
+		const weight requestTypeProbability := 0.33)
+
+ARCHI_ELEM_TYPES
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% Workstation
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	ELEM_TYPE workstation_Type(const rate workstation_rate, const weight requestTypeProbability, const weight stop_prob)
+
+	   BEHAVIOR
+
+	   workstation_function(void; void) = 
+			choice {
+				<inWSApp1, _>.<sendNWData1, exp(workstation_rate)>.<outWS1, inf(1, stop_prob)>.workstation_function(),
+				<inWSApp2, _>.<sendNWData2, exp(workstation_rate)>.<outWS2, inf(1, stop_prob)>.workstation_function(),
+				<inWS1, exp(workstation_rate)>.<outWS1, inf(1, requestTypeProbability)>.workstation_function(),
+				<inWS2, exp(workstation_rate)>.<outWS2, inf(1, 1-requestTypeProbability)>.workstation_function()
+				}
+
+	   INPUT_INTERACTIONS
+
+	     UNI inWSApp1;
+		 inWSApp2;
+		 inWS1;
+		 inWS2
+
+	   OUTPUT_INTERACTIONS
+
+	     UNI outWS1;
+		 outWS2
+		 
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% Network
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	ELEM_TYPE network_Type(const rate network_rate)
+
+	   BEHAVIOR
+
+	   network_function(void; void) = 
+			choice{
+				<inNW1, _>.<sendNWData1, exp(network_rate)>.<outNW3, inf>.network_function(),
+				<inNW2, _>.<sendNWData2, exp(network_rate)>.<outNW4, inf>.network_function(),
+				<inNW3, _>.<sendNWData3, exp(network_rate)>.<outNW1, inf>.network_function(),
+				<inNW4, _>.<sendNWData4, exp(network_rate)>.<outNW2, inf>.network_function()
+				}
+	   INPUT_INTERACTIONS
+
+	     UNI inNW1;
+		 inNW2;
+		 inNW3;
+		 inNW4
+
+	   OUTPUT_INTERACTIONS
+
+	     UNI outNW1;
+		 outNW2;
+		 outNW3;
+		 outNW4
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% Main Server
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	ELEM_TYPE main_server_Type(const rate main_server_rate)
+
+	   BEHAVIOR
+
+	   main_server_function(void; void) = 			
+			choice {
+				<inMS1, _>.<sendPipeReq, exp(main_server_rate)>.<outMS5, inf>.main_server_function(),	%From NW
+				<inMS2, _>.<sendWQReq, exp(main_server_rate)>.<outMS4, inf>.main_server_function(),	%From NW
+				<inMS3, _>.<sendPipeResp, exp(main_server_rate)>.<outMS1, inf>.main_server_function(),	%From DB
+				<inMS6, _>.<sendWQResp, exp(main_server_rate)>.<outMS2, inf>.main_server_function(),	%From DB
+				<inMS4, _>.<sendDataBase1, exp(main_server_rate)>.<outMS3, inf>.main_server_function(),	%From SC
+				<inMS5, _>.<sendDataBase2, exp(main_server_rate)>.<outMS6, inf>.main_server_function()	%From FA
+				}
+
+	   INPUT_INTERACTIONS
+
+	     UNI inMS1;
+		 inMS2;
+		 inMS3;
+		 inMS4;
+		 inMS5;
+		 inMS6
+
+	   OUTPUT_INTERACTIONS
+
+	     UNI outMS1;
+		 outMS2;
+		 outMS3;
+		 outMS4;
+		 outMS5;
+		 outMS6
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% Sensor Control
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	ELEM_TYPE sensor_control_Type(const rate sensor_control_rate)
+		
+		BEHAVIOR
+
+		sensor_control_function(void; void) = 
+			choice{
+				<inSC1, _>.<sendSCData1, exp(sensor_control_rate)>.<outSC1, inf>.sensor_control_function(),
+				<inSC2, _>.<sendSCData2, exp(sensor_control_rate)>.<outSC2, inf>.sensor_control_function()
+				}
+     
+		INPUT_INTERACTIONS
+
+			UNI inSC1;
+			inSC2
+
+		OUTPUT_INTERACTIONS
+
+			UNI outSC1;
+			outSC2
+			
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% Flow Actuator
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			
+	ELEM_TYPE flow_actuator_Type(const rate flow_actuator_rate)
+		
+		BEHAVIOR
+		
+		flow_actuator_function(void; void) = 
+			<inFA1, _>.<doFAAction, exp(flow_actuator_rate)>.<outFA1, inf>.flow_actuator_function()
+			
+		INPUT_INTERACTIONS
+
+			UNI inFA1
+
+		OUTPUT_INTERACTIONS
+
+			UNI outFA1
+			
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% Database
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%			
+			
+	ELEM_TYPE database_Type(const rate database_rate)
+
+		BEHAVIOR
+
+			database_function(void; void) = 
+			choice{
+				<inDB1, _>.<doDBAction1, exp(database_rate)>.<outDB1, inf>.database_function(),
+				<inDB2, _>.<doDBAction2, exp(database_rate)>.<outDB2, inf>.database_function()
+			      }
+
+		INPUT_INTERACTIONS
+
+			UNI inDB1;
+			    inDB2
+
+		OUTPUT_INTERACTIONS
+
+			UNI outDB1;
+			    outDB2
+			
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% Sensor
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			
+	ELEM_TYPE sensor_Type(const rate sensor_rate)
+	
+		BEHAVIOR
+
+			sensor_function(void; void) = 
+				<inS1, _>.<doSAction, exp(sensor_rate)>.<outS1, inf>.sensor_function()
+
+		INPUT_INTERACTIONS
+
+			UNI inS1
+
+		OUTPUT_INTERACTIONS
+
+			UNI outS1
+			
+
+	
+ARCHI_TOPOLOGY 
+
+	ARCHI_ELEM_INSTANCES
+
+	WS : workstation_Type(workstation_rate, requestTypeProbability, stop_prob);
+	NW : network_Type(network_rate);
+	MS : main_server_Type(main_server_rate);
+	FA : flow_actuator_Type(flow_actuator_rate);
+	SC : sensor_control_Type(sensor_control_rate);
+	DB : database_Type(database_rate);
+	S : sensor_Type(sensor_rate)
+	
+ARCHI_INTERACTIONS
+	
+	WS.inWS1;
+	WS.inWS2
+
+ARCHI_ATTACHMENTS
+		
+		FROM WS.outWS1	TO	NW.inNW1;
+		
+		FROM WS.outWS2	TO	NW.inNW2;
+		FROM NW.outNW1	TO	WS.inWSApp1;
+		FROM NW.outNW2	TO	WS.inWSApp2;
+		
+		FROM NW.outNW3	TO	MS.inMS1;
+		FROM NW.outNW4	TO	MS.inMS2;
+		FROM MS.outMS1	TO	NW.inNW3;
+		FROM MS.outMS2	TO	NW.inNW4;
+		
+		FROM MS.outMS5	TO	FA.inFA1;
+		FROM FA.outFA1	TO	MS.inMS5;
+		
+		FROM MS.outMS3	TO	DB.inDB1;
+		FROM MS.outMS6	TO	DB.inDB2;
+		FROM DB.outDB1	TO	MS.inMS3;
+		FROM DB.outDB2	TO	MS.inMS6;
+		
+		FROM MS.outMS4	TO	SC.inSC1;
+		FROM SC.outSC1	TO	MS.inMS4;
+		
+		FROM SC.outSC2	TO	S.inS1;
+		FROM S.outS1	TO	SC.inSC2
+
+END
